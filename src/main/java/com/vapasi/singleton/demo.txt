@@ -1,0 +1,16 @@
+volatile
+
+//lazy loading //Double check locking mechanism
+    public static DbSingleton getInstance(){
+        if(instance == null) {
+            synchronized (DbSingleton.class) { //Thread safe
+                if(instance == null){
+                    instance = new DbSingleton();
+                }
+            }
+        }
+        return instance;
+    }
+
+
+    //synchronized needed when the object getting created
